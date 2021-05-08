@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script>
+		$(document).ready(function(){
+		  $("#btn1").click(function(){
+			
+			var employeeId = $("input:text").val();
+			
+			$.ajax({
+				url: "http://localhost:8084/employee/" + employeeId
+			}).then(function(data) {
+				var html = '';
+				$.each( data, function( i, data ) {
+					if(data == null) {
+						html = '';
+						alert("La identificación número " + employeeId + ", no existe");
+					}else{
+						html += '<tr>' +  
+								'<td>' + data.id + '</td>' +
+								'<td>' + data.firstName + '</td>' +
+								'<td>' + data.lastName + '</td>' +
+								'<td>' + data.typeContract + '</td>' +
+								'<td>' + data.annualSalary + '</td>' +
+							'</td>';
+					}
+					
+					$("#list-list").html(html);
+					
+				  });
+			});
+			
+		  });
+		  
+		});
+		</script>
+	</head>
+	<body>
+
+		<p>Name: <input type="text" name="user"></p>
+
+		<button id="btn1">Consultar Empleado</button>
+		
+		<table id="tableSwapi" class="table table-striped">
+        <thead>
+            <tr>
+                <th>Identificación</th>
+                <th>Nombres</th>
+                <th>Apellidos</th>
+                <th>Tipo Contrato</th>
+                <th>Salario Anual</th>
+            </tr>
+        </thead>
+        <tbody id="list-list"></tbody>
+    </table>    
+	
+	</body>
+</html>

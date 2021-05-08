@@ -5,6 +5,7 @@ import co.com.masglobal.employee.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -54,15 +55,19 @@ public class EmployeeService {
      * @return la información del empleado consultado por id
      * @since 1.0
      */
-    public Employee findById(Integer id) {
-        return employeeRepository.findById(id).map(value -> {
+    public List<Employee> findById(Integer id) {
+
+        List<Employee> employees = new ArrayList<>();
+        employees.add(employeeRepository.findById(id).map(value -> {
                     value.setAnnualSalary(
                             new SalaryService().calculateHourValue(
                                     value.getSalary(),
                                     value.getTypeContract()));
                     return value;
                 })
-                .orElse(null);
+                .orElse(null));
+
+        return employees;
     }
 
 }

@@ -45,7 +45,7 @@ public class EmployeeController {
 
 
     @GetMapping("/employee/{id}")
-    public ResponseEntity<Employee> findById(@PathVariable Integer id) {
+    public ResponseEntity<List<Employee>> findById(@PathVariable Integer id) {
 
         return new ResponseEntity<>(employeeService.findById(id), HttpStatus.ACCEPTED);
     }
