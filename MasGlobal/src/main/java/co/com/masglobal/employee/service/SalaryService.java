@@ -6,10 +6,12 @@ public class SalaryService {
 
 
     /**
-     * @param salary salario del empleado de acuerdo a su contrato
-     * @param typeContract tipo de contrato del empleado
-     * @return el salario anual
-     * @since 1.0
+     * Calcula el salario anual dependiendo del tipo de contrato
+     *
+     * @param salary salary {@link Integer}
+     * @param typeContract typeContract {@link String}
+     * @return {@link Integer}
+     * @see Integer
      */
     public Integer calculateHourValue(Integer salary, String typeContract) {
 

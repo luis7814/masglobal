@@ -1,7 +1,12 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+		
 		<script>
 		$(document).ready(function(){
 		  $("#btn1").click(function(){
@@ -37,10 +42,13 @@
 		</script>
 	</head>
 	<body>
+		<div class="form-group">
+			<label for="employee">Name:</label>
+			<input id="employee" type="text" class="form-control"></p>
+		</div>
+		
 
-		<p>Name: <input type="text" name="user"></p>
-
-		<button id="btn1">Consultar Empleado</button>
+		<button id="btn1" class="btn btn-info">Consultar Empleado</button>
 		
 		<table id="tableSwapi" class="table table-striped">
         <thead>

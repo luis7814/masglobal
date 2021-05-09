@@ -6,8 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
+
 
 /**
  * Clase encargada de recibir la información del empleado de la
@@ -33,27 +36,39 @@ public class EmployeeService {
     }
 
     /**
-     * @return La lista de empleados con su valor anual.
-     * @since 1.0
+     * Consulta todos los empleados registrados y calcula su salario anual
+     *
+     * @return {@link List}
+     * @see List
+     * @see Employee
      */
     public List<Employee> findAll() {
-        return employeeRepository.findAll().stream()
-                .map(value -> {
-                    value.setAnnualSalary(
-                            new SalaryService().calculateHourValue(
-                                    value.getSalary(),
-                                    value.getTypeContract()));
 
+        return Optional.ofNullable(employeeRepository.findAll())
+                .map(value -> {
+                    if(value != null) {
+                        value.stream()
+                            .map(value1 -> {
+                                value1.setAnnualSalary(
+                                    new SalaryService().calculateHourValue(
+                                        value1.getSalary(),
+                                        value1.getTypeContract()));
+                                            return value1;
+                                })
+                                .collect(Collectors.toList());
+                    }
                     return value;
-                })
-                .collect(Collectors.toList());
+                }).orElseGet(Collections::emptyList);
     }
 
 
     /**
-     * @param id del empleado a retornar
-     * @return la información del empleado consultado por id
-     * @since 1.0
+     * Consulta por identificación de empleado y calcula su salario anual
+     *
+     * @param id id {@link Integer}
+     * @return {@link List}
+     * @see List
+     * @see Employee
      */
     public List<Employee> findById(Integer id) {
 

@@ -26,28 +26,26 @@ public class EmployeeController {
     @PostMapping("/employee")
     public ResponseEntity<Employee> save(Employee employee) {
 
-        return new ResponseEntity<>(null, HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(null, HttpStatus.OK);
     }
 
 
     @PutMapping("/employee")
     public ResponseEntity<Employee> update(Employee employee) {
 
-        return new ResponseEntity<>(null, HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(null, HttpStatus.OK);
     }
 
 
     @GetMapping("/employee")
     public ResponseEntity<List<Employee>> findAll() {
-
-        return new ResponseEntity<>(employeeService.findAll(), HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(employeeService.findAll(), HttpStatus.OK);
     }
 
 
     @GetMapping("/employee/{id}")
     public ResponseEntity<List<Employee>> findById(@PathVariable Integer id) {
-
-        return new ResponseEntity<>(employeeService.findById(id), HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(employeeService.findById(id), HttpStatus.OK);
     }
 
 }
